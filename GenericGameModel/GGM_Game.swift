@@ -41,22 +41,24 @@ struct GGM_Game: Codable, CustomStringConvertible {
     // MARK: Initializers & setup
 
     /// Initializer for the GGM_Model instance.
-    init(gridWidth: Int = 8,
-         gridHeight: Int = 8,
-         stateDefault: Int = 0,
+    init(gridWidth width: Int = 8,
+         gridHeight height: Int = 8,
+         stateDefault newDefault: Int? = nil,
          startDate: Date = Date()) {
-        self.gameTimeStartDate = startDate
-        self.gridWidth = 4
-        self.gridHeight = 4
-        self.stateDefault = stateDefault
 
+        gameTimeStartDate = startDate
+        gridWidth = width
+        gridHeight = height
+        if let newDefault = newDefault {
+            stateDefault = newDefault
+        }
         setupGrid()
     }
 
     /// This re-creates the "grid", which is essentially the multidimensional state array. Called on init.
     mutating func setupGrid() {
         states.removeAll()
-        for _ in 0...gridHeight {
+        for _ in 0..<gridHeight {
             states.append(Array(repeating: stateDefault, count: gridWidth))
         }
     }
@@ -75,8 +77,8 @@ struct GGM_Game: Codable, CustomStringConvertible {
 
     /// completely randomize the grid states with values between `0` and `stateMax`
     mutating func randomizeStates() {
-        for y in 0...gridHeight {
-            for x in 0...gridWidth {
+        for y in 0..<gridHeight {
+            for x in 0..<gridWidth {
                 states[y][x] = randomStateInt()
             }
         }
@@ -84,8 +86,8 @@ struct GGM_Game: Codable, CustomStringConvertible {
 
     /// set all states to this new value
     mutating func setAllStates(to state: Int) {
-        for y in 0...gridHeight {
-            for x in 0...gridWidth {
+        for y in 0..<gridHeight {
+            for x in 0..<gridWidth {
                 states[y][x] = state
             }
         }

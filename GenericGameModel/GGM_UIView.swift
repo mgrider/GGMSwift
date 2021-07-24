@@ -7,6 +7,7 @@ class GGM_UIView: UIView {
 
     enum GridType {
         case color
+        // TODO: flush out all these grid types
 //        case custom
 //        case hex
 //        case hexSquare
@@ -53,20 +54,6 @@ class GGM_UIView: UIView {
         setupInitialGridViewArray()
     }
 
-    /// Get the pixel coordinates for a given x,y coordinate.
-    /// - Parameters:
-    ///   - x: The horizontal coordinate position.
-    ///   - y: The vertical coordinate position.
-    /// - Returns: A `CGPoint` with relevant pixel coordinates.
-    func pixelPoint(forX x: Int, andY y: Int) -> CGPoint {
-        switch gridType {
-        case .color:
-            let pixelX = gridPixelWidth * CGFloat(x)
-            let pixelY = gridPixelHeight * CGFloat(y)
-            return CGPoint(x: pixelX, y: pixelY)
-        }
-    }
-
     /// Basically just clear out all the old views here
     private func removeSubviewsFromGridViewArray() {
         for array in gridViewArray {
@@ -74,6 +61,7 @@ class GGM_UIView: UIView {
                 view.removeFromSuperview()
             }
         }
+        gridViewArray.removeAll()
     }
 
     /// Creates the initial array of subviews.
@@ -81,9 +69,9 @@ class GGM_UIView: UIView {
         removeSubviewsFromGridViewArray()
         setupPixelSizes()
         // setup the actual array
-        for y in 0...game.gridHeight {
+        for y in 0..<game.gridHeight {
             var row = [UIView]()
-            for x in 0...game.gridWidth {
+            for x in 0..<game.gridWidth {
                 let view = newSubviewForGameState(game.stateAt(x: x, y: y) ?? game.stateDefault)
                 addSubview(view)
                 row.append(view)
@@ -135,8 +123,8 @@ class GGM_UIView: UIView {
 
     /// Refreshes all view positions.
     func refreshAllViewPositions() {
-        for y in 0...game.gridHeight {
-            for x in 0...game.gridWidth {
+        for y in 0..<game.gridHeight {
+            for x in 0..<game.gridWidth {
                 refreshViewPosition(forX: x, andY: y)
             }
         }
@@ -163,8 +151,8 @@ class GGM_UIView: UIView {
 
     /// Refresh all view positions and states.
     func refreshViewPositionsAndStates() {
-        for y in 0...game.gridHeight {
-            for x in 0...game.gridWidth {
+        for y in 0..<game.gridHeight {
+            for x in 0..<game.gridWidth {
                 refreshViewPosition(forX: x, andY: y)
                 refreshViewState(forX: x, andY: y)
             }
@@ -185,6 +173,63 @@ class GGM_UIView: UIView {
             let color = colorForGameState(state)
             gridViewArray[y][x].backgroundColor = color
         }
+    }
+
+    // MARK: pixels and coordinates
+
+    /// Get the pixel coordinates for a given x,y coordinate.
+    /// - Parameters:
+    ///   - x: The horizontal coordinate position.
+    ///   - y: The vertical coordinate position.
+    /// - Returns: A `CGPoint` with relevant pixel coordinates.
+    func pixelPoint(forX x: Int, andY y: Int) -> CGPoint {
+        switch gridType {
+        case .color:
+            let pixelX = gridPixelWidth * CGFloat(x)
+            let pixelY = gridPixelHeight * CGFloat(y)
+            return CGPoint(x: pixelX, y: pixelY)
+        }
+    }
+
+    /// Get the coordinate point for a given pixel `CGPoint`.
+    /// - Parameter pixelPoint: A pixel coordinate, presumably within the bounds of this view.
+    /// - Returns: A `CGPoint` containing coordinates corresponding to x,y values in our game object.
+    func coordinatePointFor(pixelPoint: CGPoint) -> CGPoint {
+        guard CGRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: self.frame.size.height).contains(pixelPoint) else {
+            return CGPoint(x: -1, y: -1);
+        }
+        switch gridType {
+        case .color:
+            let x = pixelPoint.x / gridPixelWidth;
+            let y = pixelPoint.y / gridPixelHeight;
+            return CGPoint(x: x, y: y)
+        }
+    }
+
+    // MARK: tap touch detection
+
+    private var tapRecognizer: UITapGestureRecognizer?
+
+    final func setRecognizesTaps(_ shouldRecognizeTaps: Bool) {
+        if tapRecognizer == nil && shouldRecognizeTaps {
+            tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(recognizeATap))
+            addGestureRecognizer(tapRecognizer!)
+        }
+        else if let tapRecognizer = tapRecognizer, !shouldRecognizeTaps {
+            removeGestureRecognizer(tapRecognizer)
+            self.tapRecognizer = nil
+        }
+    }
+
+    @objc private func recognizeATap(sender: UITapGestureRecognizer) {
+        let location = sender.location(in: self)
+        let coordinates = coordinatePointFor(pixelPoint: location)
+        handleTap(atX: Int(coordinates.x), andY: Int(coordinates.y))
+    }
+
+    open func handleTap(atX x: Int, andY y: Int) {
+        // override this in your subclass
+        print("in GGM_UIView.m ... handleTap(atX:andY:) (\(x),\(y))")
     }
 
 }

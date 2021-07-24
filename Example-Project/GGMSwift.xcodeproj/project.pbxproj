@@ -21,8 +21,12 @@
 		F0039CB2268FF1BE00E569F3 /* GGM_Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039CB0268FF1BE00E569F3 /* GGM_Direction.swift */; };
 		F0039CB42690016100E569F3 /* GGM_UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039CB32690016100E569F3 /* GGM_UIView.swift */; };
 		F0039CB52690016100E569F3 /* GGM_UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039CB32690016100E569F3 /* GGM_UIView.swift */; };
-		F0039CB72690036700E569F3 /* ExampleSwiftUIWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039CB62690036700E569F3 /* ExampleSwiftUIWrapperView.swift */; };
-		F0039CB82690036700E569F3 /* ExampleSwiftUIWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039CB62690036700E569F3 /* ExampleSwiftUIWrapperView.swift */; };
+		F0933A5026AC96AF009F9CED /* GGM_Game+Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A4F26AC96AF009F9CED /* GGM_Game+Examples.swift */; };
+		F0933A5126AC96AF009F9CED /* GGM_Game+Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A4F26AC96AF009F9CED /* GGM_Game+Examples.swift */; };
+		F0933A5326AC9848009F9CED /* ExampleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A5226AC9848009F9CED /* ExampleGameView.swift */; };
+		F0933A5426AC9848009F9CED /* ExampleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A5226AC9848009F9CED /* ExampleGameView.swift */; };
+		F0933A5526ACCA23009F9CED /* ExampleSwiftUIWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A4E26AC9563009F9CED /* ExampleSwiftUIWrapperView.swift */; };
+		F0933A5626ACCA24009F9CED /* ExampleSwiftUIWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A4E26AC9563009F9CED /* ExampleSwiftUIWrapperView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +64,9 @@
 		F0039CAD268FDC4B00E569F3 /* GGM_Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GGM_Game.swift; sourceTree = "<group>"; };
 		F0039CB0268FF1BE00E569F3 /* GGM_Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GGM_Direction.swift; sourceTree = "<group>"; };
 		F0039CB32690016100E569F3 /* GGM_UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GGM_UIView.swift; sourceTree = "<group>"; };
-		F0039CB62690036700E569F3 /* ExampleSwiftUIWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSwiftUIWrapperView.swift; sourceTree = "<group>"; };
 		F0933A4E26AC9563009F9CED /* ExampleSwiftUIWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSwiftUIWrapperView.swift; sourceTree = "<group>"; };
+		F0933A4F26AC96AF009F9CED /* GGM_Game+Examples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GGM_Game+Examples.swift"; sourceTree = "<group>"; };
+		F0933A5226AC9848009F9CED /* ExampleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleGameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +119,8 @@
 				F0039C6B268FA23900E569F3 /* GGMSwiftApp.swift */,
 				F0039C6C268FA23900E569F3 /* ExampleContentView.swift */,
 				F0933A4E26AC9563009F9CED /* ExampleSwiftUIWrapperView.swift */,
+				F0933A5226AC9848009F9CED /* ExampleGameView.swift */,
+				F0933A4F26AC96AF009F9CED /* GGM_Game+Examples.swift */,
 				F0039CAC268FDC4B00E569F3 /* GenericGameModel */,
 				F0039C6D268FA23C00E569F3 /* Assets.xcassets */,
 			);
@@ -172,7 +179,6 @@
 				F0039CAD268FDC4B00E569F3 /* GGM_Game.swift */,
 				F0039CB0268FF1BE00E569F3 /* GGM_Direction.swift */,
 				F0039CB32690016100E569F3 /* GGM_UIView.swift */,
-				F0039CB62690036700E569F3 /* ExampleSwiftUIWrapperView.swift */,
 			);
 			name = GenericGameModel;
 			path = ../../GenericGameModel;
@@ -335,9 +341,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0933A5026AC96AF009F9CED /* GGM_Game+Examples.swift in Sources */,
+				F0933A5526ACCA23009F9CED /* ExampleSwiftUIWrapperView.swift in Sources */,
+				F0933A5326AC9848009F9CED /* ExampleGameView.swift in Sources */,
 				F0039C96268FA23D00E569F3 /* ExampleContentView.swift in Sources */,
 				F0039CB1268FF1BE00E569F3 /* GGM_Direction.swift in Sources */,
-				F0039CB72690036700E569F3 /* ExampleSwiftUIWrapperView.swift in Sources */,
 				F0039CAE268FDC4B00E569F3 /* GGM_Game.swift in Sources */,
 				F0039C94268FA23D00E569F3 /* GGMSwiftApp.swift in Sources */,
 				F0039CB42690016100E569F3 /* GGM_UIView.swift in Sources */,
@@ -348,9 +356,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0933A5126AC96AF009F9CED /* GGM_Game+Examples.swift in Sources */,
+				F0933A5626ACCA24009F9CED /* ExampleSwiftUIWrapperView.swift in Sources */,
+				F0933A5426AC9848009F9CED /* ExampleGameView.swift in Sources */,
 				F0039C97268FA23D00E569F3 /* ExampleContentView.swift in Sources */,
 				F0039CB2268FF1BE00E569F3 /* GGM_Direction.swift in Sources */,
-				F0039CB82690036700E569F3 /* ExampleSwiftUIWrapperView.swift in Sources */,
 				F0039CAF268FDC4B00E569F3 /* GGM_Game.swift in Sources */,
 				F0039C95268FA23D00E569F3 /* GGMSwiftApp.swift in Sources */,
 				F0039CB52690016100E569F3 /* GGM_UIView.swift in Sources */,

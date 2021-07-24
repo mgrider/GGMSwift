@@ -32,7 +32,6 @@ struct ExampleContentView: View {
                 Slider(value: $selectedSizeY, in: 1.0...20.0, step: 1.0)
             }.padding()
             ExampleSwiftUIWrapperView(game: game, gridType: .color)
-                .background(Color.red)
         }
     }
 }
