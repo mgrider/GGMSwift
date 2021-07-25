@@ -1,17 +1,10 @@
 //
-//  ContentView.swift
-//  Shared
-//
-//  Created by Martin Grider on 7/2/21.
-//
-
 import SwiftUI
 
 struct ExampleContentView: View {
-    @State var game = GGM_Game(gridWidth: 8, gridHeight: 8)
+    @StateObject var gameData = ExampleGameDataObservable()
     @State private var selectedViewType = 0
-    @State private var selectedSizeX = 8.0
-    @State private var selectedSizeY = 8.0
+
     var body: some View {
         VStack {
             HStack {
@@ -25,13 +18,13 @@ struct ExampleContentView: View {
                 }).pickerStyle(SegmentedPickerStyle()).padding()
             }
             HStack {
-                Text("Size X: \(selectedSizeX, specifier: "%.0f")")
-                Slider(value: $selectedSizeX, in: 1.0...20.0, step: 1.0)
+                Text("Size X: \(gameData.gameColumns, specifier: "%.0f")")
+                Slider(value: $gameData.gameColumns, in: 1.0...20.0, step: 1.0)
                 Spacer(minLength: 20)
-                Text("Size Y: \(selectedSizeY, specifier: "%.0f")")
-                Slider(value: $selectedSizeY, in: 1.0...20.0, step: 1.0)
+                Text("Size Y: \(gameData.gameRows, specifier: "%.0f")")
+                Slider(value: $gameData.gameRows, in: 1.0...20.0, step: 1.0)
             }.padding()
-            ExampleSwiftUIWrapperView(game: game, gridType: .color)
+            ExampleSwiftUIWrapperView(gameData: gameData)
         }
     }
 }
