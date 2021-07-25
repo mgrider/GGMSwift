@@ -33,10 +33,18 @@ struct GGM_Game: Codable, CustomStringConvertible {
     // MARK: grid properties
 
     /// Height of the grid in "units".
-    var gridHeight: Int
+    var gridHeight: Int {
+        didSet {
+            resizeGrid()
+        }
+    }
 
     /// Width of the grid in "units".
-    var gridWidth: Int
+    var gridWidth: Int {
+        didSet {
+            resizeGrid()
+        }
+    }
 
     // MARK: Initializers & setup
 
@@ -60,6 +68,19 @@ struct GGM_Game: Codable, CustomStringConvertible {
         states.removeAll()
         for _ in 0..<gridHeight {
             states.append(Array(repeating: stateDefault, count: gridWidth))
+        }
+    }
+
+    /// This creates a new grid, copying over old state values when possible.
+    mutating func resizeGrid() {
+        let oldStates = states
+        setupGrid()
+        for y in 0..<oldStates.count {
+            for x in 0..<oldStates[y].count {
+                if y < gridHeight && x < gridWidth {
+                    states[y][x] = oldStates[y][x]
+                }
+            }
         }
     }
 

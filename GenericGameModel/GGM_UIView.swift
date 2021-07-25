@@ -19,7 +19,11 @@ class GGM_UIView: UIView {
     // MARK: Properties
 
     /// Game model instance.
-    var game: GGM_Game
+    var game: GGM_Game {
+        didSet {
+            setupInitialGridViewArray()
+        }
+    }
 
     /// Height of each subview (not actually pixels, but in logical units).
     var gridPixelHeight: CGFloat = 1.0
