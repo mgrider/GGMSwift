@@ -5,14 +5,14 @@ class GGM_UIView: UIView {
 
     // MARK: Types
 
-    enum GridType {
+    enum GridType: Hashable {
         case color
         // TODO: flush out all these grid types
 //        case custom
 //        case hex
 //        case hexSquare
 //        case image
-//        case textLabel
+        case textLabel
 //        case triangle
     }
 
@@ -102,9 +102,11 @@ class GGM_UIView: UIView {
     // MARK: customization of subviews
 
     /// Returning a color for each state in your game model.
+    /// Override this function to provide your own colors.
+    ///
     /// - Parameter state: The `Int` value corresponding to the state.
     /// - Returns: `UIColor`
-    open func colorForGameState(_ state: Int) -> UIColor {
+    open func stateColor(forState state: Int) -> UIColor {
         switch state {
         case 0: return .blue
         case 1: return .green
@@ -113,6 +115,16 @@ class GGM_UIView: UIView {
         }
     }
 
+    /// Returning some text for each state in your game model.
+    /// Override this function to provide your own.
+    ///
+    /// - Parameter state: The `Int` value corresponding to the state.
+    /// - Returns: A `String` representation of the state value.
+    open func stateTextString(forState state: Int) -> String {
+        return "\(state)"
+    }
+
+
     /// Retrieving a new subview for each view in the grid. Override this function if you want to implement
     /// custom `UIView` subclasses for your grid.
     /// - Parameter state: An `Int` value corresponding to the state for the view.
@@ -120,8 +132,20 @@ class GGM_UIView: UIView {
         switch gridType {
         case .color:
             let view = UIView()
-            view.backgroundColor = colorForGameState(state)
+            view.backgroundColor = stateColor(forState: state)
             return view
+        case .textLabel:
+            let label = UILabel()
+            label.numberOfLines = 3
+            label.adjustsFontSizeToFitWidth = true
+            label.lineBreakMode = .byWordWrapping
+            label.textAlignment = .center
+            label.minimumScaleFactor = 0.5
+            label.font = .systemFont(ofSize: 11)
+            label.layer.borderColor = UIColor.darkGray.cgColor
+            label.layer.borderWidth = 3.0
+            label.text = stateTextString(forState: state)
+            return label
         }
     }
 
@@ -146,7 +170,7 @@ class GGM_UIView: UIView {
     ///   - y: The vertical coordinate position.
     open func refreshViewPosition(forX x: Int, andY y: Int) {
         switch gridType {
-        case .color:
+        case .color, .textLabel:
             let view = gridViewArray[y][x]
             let point = pixelPoint(forX: x, andY: y)
             view.frame = CGRect(x: point.x, y: point.y, width: gridPixelWidth, height: gridPixelHeight)
@@ -174,8 +198,12 @@ class GGM_UIView: UIView {
         }
         switch gridType {
         case .color:
-            let color = colorForGameState(state)
+            let color = stateColor(forState: state)
             gridViewArray[y][x].backgroundColor = color
+        case .textLabel:
+            if let label = gridViewArray[y][x] as? UILabel {
+                label.text = stateTextString(forState: state)
+            }
         }
     }
 
@@ -188,7 +216,7 @@ class GGM_UIView: UIView {
     /// - Returns: A `CGPoint` with relevant pixel coordinates.
     func pixelPoint(forX x: Int, andY y: Int) -> CGPoint {
         switch gridType {
-        case .color:
+        case .color, .textLabel:
             let pixelX = gridPixelWidth * CGFloat(x)
             let pixelY = gridPixelHeight * CGFloat(y)
             return CGPoint(x: pixelX, y: pixelY)
@@ -203,7 +231,7 @@ class GGM_UIView: UIView {
             return CGPoint(x: -1, y: -1);
         }
         switch gridType {
-        case .color:
+        case .color, .textLabel:
             let x = pixelPoint.x / gridPixelWidth;
             let y = pixelPoint.y / gridPixelHeight;
             return CGPoint(x: x, y: y)

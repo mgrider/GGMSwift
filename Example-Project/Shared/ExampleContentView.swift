@@ -1,4 +1,3 @@
-//
 import SwiftUI
 
 struct ExampleContentView: View {
@@ -10,11 +9,11 @@ struct ExampleContentView: View {
             HStack {
                 Text("Generic Game Model")
                     .padding(.horizontal)
-                Picker("View Type", selection: $selectedViewType, content: {
-                    Text("Square").tag(0)
-                    Text("Hex").tag(1)
-                    Text("Label").tag(2)
-                    Text("Triangle").tag(3)
+                Picker("View Type", selection: $gameData.gridType, content: {
+                    Text("Square").tag(GGM_UIView.GridType.color)
+//                    Text("Hex").tag(GGM_UIView.GridType.hex)
+                    Text("Label").tag(GGM_UIView.GridType.textLabel)
+//                    Text("Triangle").tag(3)
                 }).pickerStyle(SegmentedPickerStyle()).padding()
             }
             HStack {

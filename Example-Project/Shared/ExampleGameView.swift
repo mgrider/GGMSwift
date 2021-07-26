@@ -2,7 +2,7 @@ import UIKit
 
 final class ExampleGameView: GGM_UIView {
 
-    override func colorForGameState(_ state: Int) -> UIColor {
+    override func stateColor(forState state: Int) -> UIColor {
         if let realState = GGM_Game.State(rawValue: state) {
             switch realState {
             case .blue:
