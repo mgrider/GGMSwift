@@ -17,5 +17,7 @@ struct ExampleSwiftUIWrapperView: UIViewRepresentable {
         uiView.game.gridHeight = Int(gameData.gameRows)
         uiView.game.gridWidth = Int(gameData.gameColumns)
         uiView.gridType = gameData.gridType
+        uiView.setRecognizesTaps(gameData.respondsToTapGesture)
+        uiView.setRecognizesDrags(gameData.respondsToDragGesture)
     }
 }

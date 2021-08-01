@@ -16,7 +16,7 @@ class GGM_UIView: UIView {
 //        case triangle
     }
 
-    // MARK: Properties
+    // MARK: Game/Grid Properties
 
     /// Game model instance.
     var game: GGM_Game {
@@ -25,11 +25,11 @@ class GGM_UIView: UIView {
         }
     }
 
-    /// Height of each subview (not actually pixels, but in logical units).
-    var gridPixelHeight: CGFloat = 1.0
+    /// Height of each subview in the grid. (Not actually pixels, but in logical units.)
+    private(set) var gridPixelHeight: CGFloat = 1.0
 
-    /// Width of each subview (not actually pixels, rather logical units).
-    var gridPixelWidth: CGFloat = 1.0
+    /// Width of each subview in the grid. (Not actually pixels, rather logical units.)
+    private(set) var gridPixelWidth: CGFloat = 1.0
 
     /// The type of our grid subviews.
     var gridType: GridType = .color {
@@ -39,7 +39,7 @@ class GGM_UIView: UIView {
     }
 
     /// An array of arrays of grid views.
-    var gridViewArray = [[UIView]]()
+    private(set) var gridViewArray = [[UIView]]()
 
 
     // MARK: Initialization & Setup
@@ -99,6 +99,26 @@ class GGM_UIView: UIView {
         gridPixelHeight =  CGFloat(self.frame.size.height / CGFloat(game.gridHeight));
     }
 
+
+    // MARK: retrieving specific views
+
+    /// Get a grid subview at `GGM_Game.Point`
+    func viewFor(point: GGM_Game.Point) -> UIView? {
+        guard point.x >= 0, point.y >= 0, point.x < game.gridWidth, point.y < game.gridHeight else {
+            return nil
+        }
+        return gridViewArray[point.y][point.x]
+    }
+
+    /// Get a grid subview at x,y
+    func viewFor(x: Int, y: Int) -> UIView? {
+        guard x >= 0, y >= 0, x < game.gridWidth, y < game.gridHeight else {
+            return nil
+        }
+        return gridViewArray[y][x]
+    }
+
+
     // MARK: customization of subviews
 
     /// Returning a color for each state in your game model.
@@ -148,6 +168,8 @@ class GGM_UIView: UIView {
             return label
         }
     }
+
+    // MARK: refreshing/updating views
 
     /// Refreshes all view positions.
     func refreshAllViewPositions() {
@@ -207,6 +229,7 @@ class GGM_UIView: UIView {
         }
     }
 
+
     // MARK: pixels and coordinates
 
     /// Get the pixel coordinates for a given x,y coordinate.
@@ -226,22 +249,26 @@ class GGM_UIView: UIView {
     /// Get the coordinate point for a given pixel `CGPoint`.
     /// - Parameter pixelPoint: A pixel coordinate, presumably within the bounds of this view.
     /// - Returns: A `CGPoint` containing coordinates corresponding to x,y values in our game object.
-    func coordinatePointFor(pixelPoint: CGPoint) -> CGPoint {
+    func coordinatePointFor(pixelPoint: CGPoint) -> GGM_Game.Point {
         guard CGRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: self.frame.size.height).contains(pixelPoint) else {
-            return CGPoint(x: -1, y: -1);
+            return (x: -1, y: -1);
         }
         switch gridType {
         case .color, .textLabel:
-            let x = pixelPoint.x / gridPixelWidth;
-            let y = pixelPoint.y / gridPixelHeight;
-            return CGPoint(x: x, y: y)
+            let x = Int(pixelPoint.x / gridPixelWidth);
+            let y = Int(pixelPoint.y / gridPixelHeight);
+            return (x: x, y: y)
         }
     }
 
+
     // MARK: tap touch detection
 
+    /// An optional `UITapGestureRecognizer`. If this is nil, tap recognition is disabled.
     private var tapRecognizer: UITapGestureRecognizer?
 
+    /// Call this function to enable or disable tap gesture recognition.
+    /// - Parameter shouldRecognizeTaps: Bool
     final func setRecognizesTaps(_ shouldRecognizeTaps: Bool) {
         if tapRecognizer == nil && shouldRecognizeTaps {
             tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(recognizeATap))
@@ -253,15 +280,152 @@ class GGM_UIView: UIView {
         }
     }
 
+    /// The handler for our tap gesture recognizer. This will call `handleTap(atX:andY:)`,
+    /// which is what you want to override in your subclass.
     @objc private func recognizeATap(sender: UITapGestureRecognizer) {
         let location = sender.location(in: self)
         let coordinates = coordinatePointFor(pixelPoint: location)
-        handleTap(atX: Int(coordinates.x), andY: Int(coordinates.y))
+        handleTap(atCoord: (x: coordinates.x, y: coordinates.y))
     }
 
-    open func handleTap(atX x: Int, andY y: Int) {
+    /// A tap was detected at x,y (in coordinate space). Override this in your subclass to provide
+    /// any functionality.
+    open func handleTap(atCoord point: GGM_Game.Point) {
         // override this in your subclass
-        print("in GGM_UIView.m ... handleTap(atX:andY:) (\(x),\(y))")
+        debugGesturePrint("in GGM_UIView.m ... handleTap(atCoord:) (\(point.x),\(point.y))")
+    }
+
+
+    // MARK: drag touch detection
+
+    /// A game coordinate point where the current drag began. This will be `nil` when a drag is
+    /// not in progress, or more specifically after `handleDragEnded(atCoord:)` is called.
+    var dragCoordBegan: GGM_Game.Point?
+
+    /// A game coordinate point where the drag is currently happening.
+    var dragCoordCurrent: GGM_Game.Point?
+
+    /// Whether or not any drag gestures should move the view where the drag began. The default value is false.
+    var dragMovesOriginView = false
+
+    /// The `CGPoint` where the current drag began.
+    private(set) var dragPixelPointBegan: CGPoint?
+
+    /// The `CGPoint` where the drag is currently.
+    private(set) var dragPixelPointCurrent: CGPoint?
+
+    /// An optional `UIPanGestureRecognizer`. If this is `nil` (the default), drag gestures are disabled.
+    private var dragRecognizer: UIPanGestureRecognizer?
+
+    /// Call this function to enable dragging between coordinates of the game grid.
+    ///
+    /// You will almost certainly want to implement one or some of the following:
+    /// - `handleDragBegan(atCoord:)`
+    /// - `handleDragContinued(atCoord:)`
+    /// - `handleDragEnded(atCoord:)`
+    ///
+    /// Also see exposed variables:
+    /// - `dragCoordBegan: CGPoint`
+    /// - `dragCoordCurrent: CGPoint`
+    /// - `dragMovesOriginView: Bool`
+    ///
+    /// - Parameter shouldRecognizeDrags: `true` to enable drag gestures, `false` to disable.
+    final func setRecognizesDrags(_ shouldRecognizeDrags: Bool) {
+        if dragRecognizer == nil && shouldRecognizeDrags {
+            dragRecognizer = UIPanGestureRecognizer(target: self, action: #selector(recognizeADrag(sender:)))
+            addGestureRecognizer(dragRecognizer!)
+        }
+        else if let dragRecognizer = dragRecognizer, !shouldRecognizeDrags {
+            removeGestureRecognizer(dragRecognizer)
+            self.dragRecognizer = nil
+        }
+    }
+
+    /// The internal handler for our drag gesture recognizer.
+    @objc private func recognizeADrag(sender: UIPanGestureRecognizer) {
+        let location = sender.location(in: self)
+        let coordinate = coordinatePointFor(pixelPoint: location)
+        switch sender.state {
+        case .began:
+            dragCoordBegan = coordinate
+            dragPixelPointBegan = location
+            handleDragBegan(atCoord: coordinate)
+        case .ended:
+            dragCoordCurrent = coordinate
+            dragPixelPointCurrent = location
+            if dragMovesOriginView {
+                dragMoveOriginEnd()
+            }
+            handleDragEnded(atCoord: coordinate)
+            dragCoordBegan = nil
+            dragCoordCurrent = nil
+        case .changed:
+            dragCoordCurrent = coordinate
+            dragPixelPointCurrent = location
+            if dragMovesOriginView {
+                dragMoveOriginContinue()
+            }
+            handleDragContinued(atCoord: coordinate)
+        default:
+            // there are various other states we don't care about
+            return
+        }
+    }
+
+    ///
+    private func dragMoveOriginContinue() {
+        guard let startPoint = dragCoordBegan,
+              let startView = viewFor(point: startPoint),
+              let pixelStart = dragPixelPointBegan,
+              let pixelCurrent = dragPixelPointCurrent else {
+            return
+        }
+        bringSubviewToFront(startView)
+        let offsetX = pixelCurrent.x - pixelStart.x
+        let offsetY = pixelCurrent.y - pixelStart.y
+        // TODO
+    }
+
+    ///
+    private func dragMoveOriginEnd() {
+        // TODO
+        dragPixelPointBegan = nil
+        dragPixelPointCurrent = nil
+    }
+
+    /// A drag began at `point` (x,y in coordinate space). Override this in your subclass to provide
+    /// any real functionality. Also see `dragCoordBegan: CGPoint` and `dragMovesOriginView: Bool`.
+    open func handleDragBegan(atCoord point: GGM_Game.Point) {
+        // override this in your subclass
+        debugGesturePrint("in GGM_UIView.m ... handleDragBegan(atCoord:) (\(point.x),\(point.y))")
+    }
+
+    /// A drag continued at `point` (x,y in coordinate space). Override this in your subclass to provide
+    /// any real functionality.
+    open func handleDragContinued(atCoord point: GGM_Game.Point) {
+        // override this in your subclass
+        debugGesturePrint("in GGM_UIView.m ... handleDragContinued(atCoord:) (\(point.x),\(point.y))")
+    }
+
+    /// A drag ended at `point` (x,y in coordinate space). Override this in your subclass to provide
+    /// any real functionality.
+    open func handleDragEnded(atCoord point: GGM_Game.Point) {
+        // override this in your subclass
+        debugGesturePrint("in GGM_UIView.m ... handleDragEnded(atCoord:) (\(point.x),\(point.y))")
+    }
+
+
+    // MARK: debug related
+
+    /// A `Bool` indicating whether or not to `print()` gesture-related debug messages.
+    final var debugGestures = true
+
+    /// Determines whether to print gesture debug statements here.
+    private func debugGesturePrint(_ statement: String) {
+        guard debugGestures else { return }
+        #if DEBUG
+        print(statement)
+        #endif
     }
 
 }

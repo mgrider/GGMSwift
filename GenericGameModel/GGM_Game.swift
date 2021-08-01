@@ -3,6 +3,8 @@ import Foundation
 /// Base model for game data.
 struct GGM_Game: Codable, CustomStringConvertible {
 
+    typealias Point = (x: Int, y: Int)
+
     // MARK: convenience properties
 
     /// Whether or not the game is over.
@@ -143,7 +145,7 @@ struct GGM_Game: Codable, CustomStringConvertible {
     /// `toString` for debugging
     func toString() -> String {
         var string = "GGM_Game (\(type(of: self))) \n"
-        string += "\(String(describing: state)) \n"
+        string += "\(String(describing: states)) \n"
         string += "Game Over: \(isOver), Paused: \(isPaused)"
         return string
     }

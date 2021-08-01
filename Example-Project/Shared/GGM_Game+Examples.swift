@@ -5,6 +5,9 @@ extension GGM_Game {
         case red
         case blue
         case green
+        case dragStart
+        case dragContinue
+        case dragEnd
     }
 
     func stateAfter(state: State) -> State {
@@ -15,6 +18,8 @@ extension GGM_Game {
             return .green
         case .green:
             return .red
+        default:
+            return .blue
         }
     }
 }
