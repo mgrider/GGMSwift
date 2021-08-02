@@ -8,29 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		F0039C87268FA23D00E569F3 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039C86268FA23D00E569F3 /* Tests_iOS.swift */; };
-		F0039C92268FA23D00E569F3 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039C91268FA23D00E569F3 /* Tests_macOS.swift */; };
 		F0039C94268FA23D00E569F3 /* GGMSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039C6B268FA23900E569F3 /* GGMSwiftApp.swift */; };
-		F0039C95268FA23D00E569F3 /* GGMSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039C6B268FA23900E569F3 /* GGMSwiftApp.swift */; };
 		F0039C96268FA23D00E569F3 /* ExampleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039C6C268FA23900E569F3 /* ExampleContentView.swift */; };
-		F0039C97268FA23D00E569F3 /* ExampleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039C6C268FA23900E569F3 /* ExampleContentView.swift */; };
 		F0039C98268FA23D00E569F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0039C6D268FA23C00E569F3 /* Assets.xcassets */; };
-		F0039C99268FA23D00E569F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0039C6D268FA23C00E569F3 /* Assets.xcassets */; };
 		F0039CAE268FDC4B00E569F3 /* GGM_Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039CAD268FDC4B00E569F3 /* GGM_Game.swift */; };
-		F0039CAF268FDC4B00E569F3 /* GGM_Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039CAD268FDC4B00E569F3 /* GGM_Game.swift */; };
 		F0039CB1268FF1BE00E569F3 /* GGM_Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039CB0268FF1BE00E569F3 /* GGM_Direction.swift */; };
-		F0039CB2268FF1BE00E569F3 /* GGM_Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039CB0268FF1BE00E569F3 /* GGM_Direction.swift */; };
 		F0039CB42690016100E569F3 /* GGM_UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039CB32690016100E569F3 /* GGM_UIView.swift */; };
-		F0039CB52690016100E569F3 /* GGM_UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0039CB32690016100E569F3 /* GGM_UIView.swift */; };
 		F044091526B4E8A700C94D67 /* ExampleConfigurationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F044091426B4E8A700C94D67 /* ExampleConfigurationSheetView.swift */; };
-		F044091626B4E8A700C94D67 /* ExampleConfigurationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F044091426B4E8A700C94D67 /* ExampleConfigurationSheetView.swift */; };
 		F0933A5026AC96AF009F9CED /* GGM_Game+Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A4F26AC96AF009F9CED /* GGM_Game+Examples.swift */; };
-		F0933A5126AC96AF009F9CED /* GGM_Game+Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A4F26AC96AF009F9CED /* GGM_Game+Examples.swift */; };
 		F0933A5326AC9848009F9CED /* ExampleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A5226AC9848009F9CED /* ExampleGameView.swift */; };
-		F0933A5426AC9848009F9CED /* ExampleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A5226AC9848009F9CED /* ExampleGameView.swift */; };
 		F0933A5526ACCA23009F9CED /* ExampleSwiftUIWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A4E26AC9563009F9CED /* ExampleSwiftUIWrapperView.swift */; };
-		F0933A5626ACCA24009F9CED /* ExampleSwiftUIWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A4E26AC9563009F9CED /* ExampleSwiftUIWrapperView.swift */; };
 		F0933A5E26ADE3C0009F9CED /* ExampleGameDataObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A5D26ADE3C0009F9CED /* ExampleGameDataObservable.swift */; };
-		F0933A5F26ADE3C0009F9CED /* ExampleGameDataObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0933A5D26ADE3C0009F9CED /* ExampleGameDataObservable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,13 +29,6 @@
 			remoteGlobalIDString = F0039C71268FA23D00E569F3;
 			remoteInfo = "GGMSwift (iOS)";
 		};
-		F0039C8E268FA23D00E569F3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F0039C66268FA23900E569F3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F0039C79268FA23D00E569F3;
-			remoteInfo = "GGMSwift (macOS)";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -56,15 +37,10 @@
 		F0039C6D268FA23C00E569F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0039C72268FA23D00E569F3 /* GGMSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGMSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0039C75268FA23D00E569F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F0039C7A268FA23D00E569F3 /* GGMSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGMSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F0039C7C268FA23D00E569F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F0039C7D268FA23D00E569F3 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		F0039C82268FA23D00E569F3 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0039C86268FA23D00E569F3 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		F0039C88268FA23D00E569F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0039C8D268FA23D00E569F3 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F0039C91268FA23D00E569F3 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		F0039C93268FA23D00E569F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0039CAD268FDC4B00E569F3 /* GGM_Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GGM_Game.swift; sourceTree = "<group>"; };
 		F0039CB0268FF1BE00E569F3 /* GGM_Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GGM_Direction.swift; sourceTree = "<group>"; };
 		F0039CB32690016100E569F3 /* GGM_UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GGM_UIView.swift; sourceTree = "<group>"; };
@@ -77,13 +53,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		F0039C6F268FA23D00E569F3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F0039C77268FA23D00E569F3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -112,9 +81,7 @@
 			children = (
 				F0039C6A268FA23900E569F3 /* Shared */,
 				F0039C74268FA23D00E569F3 /* iOS */,
-				F0039C7B268FA23D00E569F3 /* macOS */,
 				F0039C85268FA23D00E569F3 /* Tests iOS */,
-				F0039C90268FA23D00E569F3 /* Tests macOS */,
 				F0039C73268FA23D00E569F3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -139,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				F0039C72268FA23D00E569F3 /* GGMSwift.app */,
-				F0039C7A268FA23D00E569F3 /* GGMSwift.app */,
 				F0039C82268FA23D00E569F3 /* Tests iOS.xctest */,
 				F0039C8D268FA23D00E569F3 /* Tests macOS.xctest */,
 			);
@@ -154,15 +120,6 @@
 			path = iOS;
 			sourceTree = "<group>";
 		};
-		F0039C7B268FA23D00E569F3 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				F0039C7C268FA23D00E569F3 /* Info.plist */,
-				F0039C7D268FA23D00E569F3 /* macOS.entitlements */,
-			);
-			path = macOS;
-			sourceTree = "<group>";
-		};
 		F0039C85268FA23D00E569F3 /* Tests iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,15 +127,6 @@
 				F0039C88268FA23D00E569F3 /* Info.plist */,
 			);
 			path = "Tests iOS";
-			sourceTree = "<group>";
-		};
-		F0039C90268FA23D00E569F3 /* Tests macOS */ = {
-			isa = PBXGroup;
-			children = (
-				F0039C91268FA23D00E569F3 /* Tests_macOS.swift */,
-				F0039C93268FA23D00E569F3 /* Info.plist */,
-			);
-			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
 		F0039CAC268FDC4B00E569F3 /* GenericGameModel */ = {
@@ -212,23 +160,6 @@
 			productReference = F0039C72268FA23D00E569F3 /* GGMSwift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F0039C79268FA23D00E569F3 /* GGMSwift (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F0039C9F268FA23D00E569F3 /* Build configuration list for PBXNativeTarget "GGMSwift (macOS)" */;
-			buildPhases = (
-				F0039C76268FA23D00E569F3 /* Sources */,
-				F0039C77268FA23D00E569F3 /* Frameworks */,
-				F0039C78268FA23D00E569F3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "GGMSwift (macOS)";
-			productName = "GGMSwift (macOS)";
-			productReference = F0039C7A268FA23D00E569F3 /* GGMSwift.app */;
-			productType = "com.apple.product-type.application";
-		};
 		F0039C81268FA23D00E569F3 /* Tests iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0039CA2268FA23D00E569F3 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
@@ -258,7 +189,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F0039C8F268FA23D00E569F3 /* PBXTargetDependency */,
 			);
 			name = "Tests macOS";
 			productName = "Tests macOS";
@@ -275,9 +205,6 @@
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					F0039C71268FA23D00E569F3 = {
-						CreatedOnToolsVersion = 12.5;
-					};
-					F0039C79268FA23D00E569F3 = {
 						CreatedOnToolsVersion = 12.5;
 					};
 					F0039C81268FA23D00E569F3 = {
@@ -304,7 +231,6 @@
 			projectRoot = "";
 			targets = (
 				F0039C71268FA23D00E569F3 /* GGMSwift (iOS) */,
-				F0039C79268FA23D00E569F3 /* GGMSwift (macOS) */,
 				F0039C81268FA23D00E569F3 /* Tests iOS */,
 				F0039C8C268FA23D00E569F3 /* Tests macOS */,
 			);
@@ -317,14 +243,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0039C98268FA23D00E569F3 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F0039C78268FA23D00E569F3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F0039C99268FA23D00E569F3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,23 +280,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F0039C76268FA23D00E569F3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F0933A5126AC96AF009F9CED /* GGM_Game+Examples.swift in Sources */,
-				F0933A5626ACCA24009F9CED /* ExampleSwiftUIWrapperView.swift in Sources */,
-				F0933A5426AC9848009F9CED /* ExampleGameView.swift in Sources */,
-				F0039C97268FA23D00E569F3 /* ExampleContentView.swift in Sources */,
-				F0039CB2268FF1BE00E569F3 /* GGM_Direction.swift in Sources */,
-				F0039CAF268FDC4B00E569F3 /* GGM_Game.swift in Sources */,
-				F0933A5F26ADE3C0009F9CED /* ExampleGameDataObservable.swift in Sources */,
-				F0039C95268FA23D00E569F3 /* GGMSwiftApp.swift in Sources */,
-				F044091626B4E8A700C94D67 /* ExampleConfigurationSheetView.swift in Sources */,
-				F0039CB52690016100E569F3 /* GGM_UIView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F0039C7E268FA23D00E569F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -391,7 +292,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0039C92268FA23D00E569F3 /* Tests_macOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,11 +302,6 @@
 			isa = PBXTargetDependency;
 			target = F0039C71268FA23D00E569F3 /* GGMSwift (iOS) */;
 			targetProxy = F0039C83268FA23D00E569F3 /* PBXContainerItemProxy */;
-		};
-		F0039C8F268FA23D00E569F3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F0039C79268FA23D00E569F3 /* GGMSwift (macOS) */;
-			targetProxy = F0039C8E268FA23D00E569F3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -567,54 +462,6 @@
 			};
 			name = Release;
 		};
-		F0039CA0268FA23D00E569F3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = R5R7CPRD56;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.abstractpuzzle.GGMSwift;
-				PRODUCT_NAME = GGMSwift;
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		F0039CA1268FA23D00E569F3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = R5R7CPRD56;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.abstractpuzzle.GGMSwift;
-				PRODUCT_NAME = GGMSwift;
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		F0039CA3268FA23D00E569F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -721,15 +568,6 @@
 			buildConfigurations = (
 				F0039C9D268FA23D00E569F3 /* Debug */,
 				F0039C9E268FA23D00E569F3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F0039C9F268FA23D00E569F3 /* Build configuration list for PBXNativeTarget "GGMSwift (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F0039CA0268FA23D00E569F3 /* Debug */,
-				F0039CA1268FA23D00E569F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

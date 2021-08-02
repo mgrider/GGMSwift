@@ -15,7 +15,6 @@ struct ExampleConfigurationSheetView: View {
                             Text("Square").tag(GGM_UIView.GridType.color)
         //                    Text("Hex").tag(GGM_UIView.GridType.hex)
                             Text("Label").tag(GGM_UIView.GridType.textLabel)
-        //                    Text("Triangle").tag(3)
                         }).pickerStyle(SegmentedPickerStyle())
                 }
                 HStack {
@@ -41,7 +40,6 @@ struct ExampleConfigurationSheetView: View {
             .navigationBarItems(
                 trailing: Button(
                     action: {
-                            print("Dismissing sheet view...")
                         self.gameData.configurationShown = false
                     }) {
                             Text("Done").bold()
